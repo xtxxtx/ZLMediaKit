@@ -165,6 +165,8 @@ public:
     void getTransportInfo(const std::function<void(Json::Value)> &callback) const;
     size_t getRecvSpeed() const { return _ice_agent ? _ice_agent->getRecvSpeed() : 0; }
     size_t getRecvTotalBytes() const { return _ice_agent ? _ice_agent->getRecvTotalBytes() : 0; }
+    size_t getSendSpeed() const { return _ice_agent ? _ice_agent->getSendSpeed() : 0; }
+    size_t getSendTotalBytes() const { return _ice_agent ? _ice_agent->getSendTotalBytes() : 0; }
 
     void setOnShutdown(std::function<void(const toolkit::SockException &ex)> cb);
 
@@ -380,6 +382,7 @@ private:
     // pli rtcp timer
     toolkit::Ticker _pli_ticker;
 
+    toolkit::Ticker _rtcp_sr_send_ticker;
     toolkit::Ticker _rtcp_rr_send_ticker;
 
     // twcc rtcp发送上下文对象  [AUTO-TRANSLATED:aef6476a]
